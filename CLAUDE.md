@@ -6,13 +6,13 @@
 
 Односторінковий сайт «Robin Williams» (клон Webflow-шаблону), перебудований зі старої верстки на шаблон `../my-site-ai-test/`: Vite 7, SCSS + BEM, vanilla JS-модулі, Swiper 14. Деплой на GitHub Pages через Actions (`.github/workflows/deploy.yml`), `base: '/Robin.W/'`. Тестів і TypeScript немає.
 
-Стара версія — лише зібрані файли, без вихідників — є в історії до коміту перебудови (останній старий коміт `deea716`) і в копії `../Robin.W-old-build/`. Її `index.html` відкривається напряму в браузері, з нею звіряють вигляд.
+Стара версія — лише зібрані файли, без вихідників — лежить в історії: останній старий коміт `deea716`. Щоб звірити з нею вигляд, розгорніть її поруч (`git worktree add ../Robin.W-old deea716`) і відкрийте `../Robin.W-old/index.html` напряму в браузері. Прибрати: `git worktree remove ../Robin.W-old`.
 
 ## Команди
 
 ```bash
 npm run dev       # dev-сервер; <img> тут ще без <picture>
-npm run build     # prebuild (plugins/genFormats.js) + vite build -> dist/
+npm run build     # vite build -> dist/
 npm run preview   # віддає dist/ на http://localhost:4173/Robin.W/
 npm run lint      # eslint ., потім stylelint "**/*.scss"
 npm run format    # prettier --write .
@@ -48,7 +48,7 @@ npm run format    # prettier --write .
 - Prettier має `htmlWhitespaceSensitivity: "ignore"` і ставить inline-елемент та розділовий знак після нього на різні рядки: на сторінці з'являється пробіл («Google , Interaction Designer»). Тому перед заголовками в `experience` стоїть `<!-- prettier-ignore -->`. Так само робіть для кожного нового `<span>…</span>,`.
 - Зображення пишуться як `<img src="./src/images/...">`. Плагін `plugins/htmlImgToPicture.js` обгортає jpg/png у `<picture>` (avif, webp) лише при збірці, `<picture>` без класу, тож класи ставляться на `<img>`. Вихід повторює папки: `assets/images/photo/italy/01.avif`.
 - `isRetinaSupport: false`: оригінали вже в розмірі показу. `formatQuality: { avif: 60 }`: з quality 80 avif виходив більшим за webp, а браузер бере перший `<source>`, тобто avif.
-- SVG менші за 4 kB Vite вбудовує в HTML як `data:`. SVG-спрайт із шаблону (`vite-plugin-svg-icons`) не використовується: папки `src/images/icons` немає, `main.js` не імпортує `virtual:svg-icons-register`, усі SVG — через `<img>`.
+- SVG менші за 4 kB Vite вбудовує в HTML як `data:`. Усі SVG підключено через `<img>`. SVG-спрайт (`vite-plugin-svg-icons`) і `plugins/genFormats.js` із шаблону тут прибрано: вони не використовувались і тягнули застарілі залежності.
 - Swiper ставить `.swiper-wrapper { box-sizing: content-box }`, а `* { box-sizing: inherit }` передає це слайдам. Тому в `.logos__item` явно `border-box`, інакше рамка додає 2px.
 - `.top__img` має фіксовану висоту 650px і `object-fit: cover`, як у старій версії: на вужчих екранах фото обрізається до вертикального кадру.
 - Неактивні панелі вкладок ховає атрибут `hidden`. Не задавайте `.tabs__panel` властивість `display`, бо вона переб'є `hidden`.

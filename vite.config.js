@@ -3,7 +3,6 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 import { defineConfig } from 'vite'
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
-import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { imgToPicture as htmlImgToPicture } from './plugins/htmlImgToPicture.js'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -78,31 +77,6 @@ export default defineConfig({
    // і віддавав 1x-версію вдвічі меншою — зображення розмивалися б
    isRetinaSupport: false,
    lazyLoading: true,
-  }),
-  createSvgIconsPlugin({
-   iconDirs: [path.resolve(process.cwd(), 'src/images/icons')],
-   symbolId: 'icon-[name]',
-   svgoOptions: {
-    plugins: [
-     { name: 'removeDoctype', active: true },
-     { name: 'removeXMLProcInst', active: true },
-     { name: 'removeComments', active: true },
-     { name: 'removeMetadata', active: true },
-     { name: 'removeTitle', active: true },
-     { name: 'removeDesc', active: true },
-     {
-      name: 'removeAttrs',
-      params: { attrs: ['fill', 'stroke', 'style', 'class', 'data-name'] },
-     },
-     { name: 'removeDimensions', active: true },
-     { name: 'removeViewBox', active: false },
-     { name: 'convertShapeToPath', active: true },
-     { name: 'mergePaths', active: true },
-     { name: 'convertColors', params: { currentColor: true } },
-     { name: 'cleanupIDs', active: true },
-     { name: 'removeUselessDefs', active: true },
-    ],
-   },
   }),
  ],
 })

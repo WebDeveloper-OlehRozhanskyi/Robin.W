@@ -10,7 +10,6 @@
   "lint:scss:fix": "stylelint \"**/*.scss\" --fix",
   "format": "prettier --write .",
   "dev": "vite",
-  "prebuild": "node ./plugins/genFormats.js",
   "build": "vite build",
   "preview": "vite preview",
   "lint": "npm run lint:js ; npm run lint:scss",
@@ -20,7 +19,6 @@
   "swiper": "14.2.0"
  },
  "devDependencies": {
-  "@atrocityz/vite-plugin-html-img-to-picture": "1.0.6",
   "@eslint/js": "9.36.0",
   "eslint": "9.36.0",
   "eslint-config-prettier": "10.1.8",
@@ -34,9 +32,7 @@
   "stylelint-config-standard-scss": "16.0.0",
   "stylelint-order": "7.0.0",
   "stylelint-scss": "6.12.1",
-  "ttf2woff2": "^8.0.1",
   "vite": "7.1.9",
-  "vite-plugin-image-optimizer": "2.0.3",
-  "vite-plugin-svg-icons": "2.0.1"
+  "vite-plugin-image-optimizer": "2.0.3"
  }
 }
