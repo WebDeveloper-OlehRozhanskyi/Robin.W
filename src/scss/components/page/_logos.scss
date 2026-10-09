@@ -1,0 +1,52 @@
+@use '../foundation' as *;
+
+// Стрічка логотипів клієнтів. На екранах ширших за 1380px її прокручує
+// Swiper (js/components/logos-slider.js), на вужчих — це звичайна сітка
+.logos {
+ // .logos__slider
+ &__slider {
+  // Рівномірний рух замість ease — інакше стрічка смикається кожні 4 с
+  --swiper-wrapper-transition-timing-function: linear;
+
+  overflow: hidden;
+  max-width: rem(1380);
+  margin-inline: auto;
+ }
+
+ // Сітка лише поки Swiper не запущений: інакше grid перебиває
+ // display: flex, з яким працює .swiper-wrapper
+ &__slider:not(.swiper-initialized) &__list {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+
+  @include laptop {
+   grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include bm {
+   grid-template-columns: repeat(2, 1fr);
+  }
+ }
+
+ // .logos__list
+ &__list {
+  @include list;
+ }
+
+ // border-box явно: Swiper ставить .swiper-wrapper content-box, а наш
+ // * { box-sizing: inherit } передавав його слайдам — рамка додавала 2px
+ // .logos__item
+ &__item {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: rem(140);
+  border: 1px solid var(--color-dark);
+ }
+
+ // .logos__img
+ &__img {
+  @include image;
+ }
+}

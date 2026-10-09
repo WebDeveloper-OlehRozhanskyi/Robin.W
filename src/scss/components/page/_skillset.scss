@@ -1,0 +1,92 @@
+@use '../foundation' as *;
+
+.skillset {
+ @include bm {
+  padding-block: var(--gap-80) var(--gap-64);
+ }
+
+ // .skillset__container
+ &__container {
+  display: grid;
+  align-items: start;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: var(--gap-72);
+
+  @include laptop {
+   grid-template-columns: 1fr;
+   row-gap: var(--gap-48);
+  }
+
+  @include bm {
+   row-gap: rem(69);
+  }
+ }
+
+ // .skillset__title
+ &__title {
+  margin-bottom: var(--gap-24);
+  color: var(--color-white);
+
+  @include bm {
+   margin-bottom: var(--gap-16);
+  }
+ }
+
+ // .skillset__text
+ &__text {
+  @include margin-block;
+
+  font-size: var(--text-sm);
+ }
+
+ // .skillset__list
+ &__list {
+  @include list;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column: 2 / 4;
+  gap: var(--gap-48) var(--gap-72);
+
+  @include laptop {
+   grid-column: auto;
+  }
+
+  @include bm {
+   grid-template-columns: 1fr;
+  }
+ }
+
+ // .skillset__item
+ &__item {
+  transition: transform var(--transition);
+
+  @include hover {
+   transform: scale(1.01);
+  }
+ }
+
+ // .skillset__icon
+ &__icon {
+  @include image;
+
+  margin-bottom: var(--gap-24);
+ }
+
+ // .skillset__item-title
+ &__item-title {
+  @include margin-block;
+
+  margin-bottom: var(--gap-12);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-white);
+ }
+
+ // .skillset__item-text
+ &__item-text {
+  @include margin-block;
+
+  font-size: var(--text-sm);
+ }
+}

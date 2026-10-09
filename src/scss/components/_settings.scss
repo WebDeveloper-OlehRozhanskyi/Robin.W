@@ -1,0 +1,62 @@
+@use 'foundation' as *;
+
+html {
+ scroll-padding-top: var(--header-height);
+}
+
+body {
+ position: relative;
+ overflow-x: clip;
+ margin: 0;
+ font-family: var(--font-family);
+ font-size: var(--text-base);
+ font-weight: 400;
+ line-height: 1.5;
+ color: var(--color-gray);
+ background-color: var(--color-black);
+}
+
+// Поки відкрите мобільне меню, сторінка під ним не прокручується
+.page--lock {
+ overflow-y: hidden;
+}
+
+// currentcolor: обводка видима і на чорних, і на бежевих секціях
+:focus-visible {
+ outline: 2px solid currentcolor;
+ outline-offset: 3px;
+}
+
+.visually-hidden {
+ position: absolute !important;
+ overflow: hidden !important;
+ clip-path: inset(50%) !important;
+ width: 1px !important;
+ height: 1px !important;
+ margin: 1px !important;
+ padding: 0 !important;
+ white-space: nowrap !important;
+ border: 0 !important;
+}
+
+// Тонкий сірий повзунок на прозорій доріжці
+* {
+ scrollbar-color: var(--color-scrollbar) transparent;
+ scrollbar-width: thin;
+}
+
+// Запасний варіант для браузерів без scrollbar-color (старіші Safari).
+// Chrome ігнорує ці правила, коли задано scrollbar-color
+::-webkit-scrollbar {
+ width: rem(10);
+ background-color: transparent;
+
+ @include bm {
+  width: rem(5);
+ }
+}
+
+::-webkit-scrollbar-thumb {
+ background-color: var(--color-scrollbar);
+ border-radius: rem(10);
+}

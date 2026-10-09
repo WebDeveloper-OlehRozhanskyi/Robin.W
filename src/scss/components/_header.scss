@@ -1,0 +1,176 @@
+@use 'foundation' as *;
+
+.header {
+ position: fixed;
+ top: 0;
+ left: 0;
+ z-index: 10;
+ width: 100%;
+ background-color: transparent;
+
+ // .header--scrolled — додає JS, коли сторінку прокрутили нижче шапки
+ &--scrolled {
+  background-color: var(--color-black);
+ }
+
+ // Чорна підкладка під лого і бургером, поки виїжджає мобільне меню
+ &--menu-open::before {
+  @include bm {
+   position: absolute;
+   inset: 0;
+   background-color: var(--color-black);
+   content: '';
+  }
+ }
+
+ // .header__container
+ &__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: rem(50);
+  min-height: var(--header-height);
+
+  @include bm {
+   column-gap: rem(20);
+  }
+ }
+
+ // .header__logo
+ &__logo {
+  position: relative;
+  z-index: 5;
+  display: block;
+ }
+
+ // .header__logo-img
+ &__logo-img {
+  @include image;
+ }
+}
+
+.menu {
+ position: relative;
+ z-index: 4;
+
+ @include bm {
+  position: fixed;
+  inset: 0;
+  overflow-y: auto;
+  visibility: hidden;
+  padding: rem(150) 0 rem(30);
+  background-color: var(--color-black);
+  transform: translateX(100%);
+
+  // visibility вимикається після того, як меню виїхало: закрите меню
+  // не ловить фокус з клавіатури
+  transition:
+   transform var(--transition-slow),
+   visibility var(--transition-slow);
+ }
+
+ // .menu--open
+ &--open {
+  @include bm {
+   visibility: visible;
+   transform: translateX(0);
+  }
+ }
+
+ // .menu__list
+ &__list {
+  @include list;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: rem(20) rem(50);
+
+  @include bm {
+   flex-flow: column nowrap;
+  }
+ }
+
+ // .menu__link
+ &__link {
+  @include link;
+
+  font-size: var(--text-sm);
+  color: var(--color-white);
+  transition: background-color var(--transition);
+
+  @include hover {
+   text-decoration: underline;
+  }
+
+  @include bm {
+   font-size: var(--text-lg);
+  }
+
+  // .menu__link--active — пункт секції, яку зараз видно
+  &--active {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   min-height: var(--header-height);
+   padding-inline: rem(25);
+   background-color: var(--color-accent);
+  }
+ }
+}
+
+// Кнопка 44×44 для зручного натискання; самі лінії 18×11, як у макеті
+.burger-btn {
+ @include button;
+
+ position: relative;
+ z-index: 5;
+ display: none;
+ width: rem(44);
+ height: rem(44);
+ margin-right: rem(-13);
+ padding: 0;
+ background-color: transparent;
+ border: 0;
+
+ @include bm {
+  display: block;
+ }
+
+ span,
+ &::before {
+  position: absolute;
+  right: rem(13);
+  height: rem(2);
+  background-color: var(--color-white);
+  transition:
+   top var(--transition),
+   bottom var(--transition),
+   width var(--transition),
+   transform var(--transition);
+  content: '';
+ }
+
+ &::before {
+  top: rem(16.5);
+  width: rem(18);
+ }
+
+ span {
+  bottom: rem(16.5);
+  width: rem(13);
+ }
+
+ &[aria-expanded='true'] {
+  span {
+   bottom: calc(50% - #{rem(1)});
+   width: rem(18);
+   transform: rotate(45deg);
+  }
+
+  &::before {
+   top: calc(50% - #{rem(1)});
+   transform: rotate(-45deg);
+  }
+ }
+}

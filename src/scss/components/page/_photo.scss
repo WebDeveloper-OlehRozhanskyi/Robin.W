@@ -1,0 +1,84 @@
+@use '../foundation' as *;
+
+.photo {
+ // .photo__title
+ &__title {
+  margin-bottom: var(--gap-24);
+  color: var(--color-white);
+ }
+
+ // .photo__text
+ &__text {
+  @include margin-block;
+
+  margin-bottom: var(--gap-64);
+
+  @include bm {
+   margin-bottom: var(--gap-40);
+  }
+ }
+
+ // .photo__gallery
+ &__gallery {
+  @include list;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: rem(420);
+  gap: var(--gap-24);
+
+  // min(): колонка не ширша за сам список. Без нього на екранах до 346px
+  // колонка 306px не влазила б і фото вилазили за край
+  @include laptop {
+   grid-template-columns: repeat(auto-fit, minmax(min(#{rem(306)}, 100%), 1fr));
+  }
+ }
+
+ // .photo__img
+ &__img {
+  @include image;
+
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+ }
+}
+
+// Вкладки галереї. Активну вкладку позначає aria-selected, неактивні панелі
+// ховає атрибут hidden — обидва перемикає js/components/tabs.js
+.tabs {
+ // .tabs__list
+ &__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-24);
+  margin-bottom: var(--gap-40);
+
+  @include bm {
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+  }
+ }
+
+ // .tabs__tab
+ &__tab {
+  @include button;
+
+  padding: var(--gap-12) var(--gap-16);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-white);
+  background-color: transparent;
+  border: 1px solid var(--color-accent);
+  transition: background-color var(--transition);
+
+  @include hover {
+   background-color: var(--color-dark);
+  }
+
+  // Стоїть після hover: активна вкладка лишається фіолетовою й під курсором
+  &[aria-selected='true'] {
+   background-color: var(--color-accent);
+  }
+ }
+}

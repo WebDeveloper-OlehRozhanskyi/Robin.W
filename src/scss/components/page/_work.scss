@@ -1,0 +1,117 @@
+@use '../foundation' as *;
+
+.work {
+ padding-bottom: rem(153);
+
+ @include l {
+  padding-bottom: var(--section-padding);
+ }
+
+ @include bm {
+  padding-block: var(--gap-64) rem(70);
+ }
+
+ // .work__subtitle
+ &__subtitle {
+  color: var(--color-white);
+ }
+
+ // Дві колонки різної висоти: ліва починається із заголовка
+ // .work__columns
+ &__columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: rem(25);
+
+  @include t {
+   grid-template-columns: 1fr;
+   row-gap: var(--gap-48);
+   max-width: rem(624);
+   margin-inline: auto;
+  }
+ }
+
+ // Усередині колонки 25px на всіх екранах; 48px — лише між колонками,
+ // коли вони стають одна під одною (.work__columns)
+ // .work__column
+ &__column {
+  display: flex;
+  flex-direction: column;
+  row-gap: rem(25);
+ }
+
+ // .work__more
+ &__more {
+  @include link;
+
+  align-self: center;
+  margin-block: auto;
+  padding: var(--gap-24) var(--gap-32);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-white);
+  border: 1px solid var(--color-accent);
+  transition:
+   background-color var(--transition),
+   transform var(--transition);
+
+  @include hover {
+   background-color: var(--color-dark);
+   transform: scale(0.99);
+  }
+ }
+}
+
+.card {
+ transition: transform var(--transition);
+
+ @include hover {
+  transform: scale(0.99);
+ }
+
+ // .card__link
+ &__link {
+  @include link;
+ }
+
+ // .card__media
+ &__media {
+  @include bm {
+   overflow: hidden;
+   aspect-ratio: 5 / 4;
+  }
+ }
+
+ // .card__img
+ &__img {
+  @include image;
+
+  width: 100%;
+
+  @include bm {
+   height: 100%;
+   object-fit: cover;
+  }
+ }
+
+ // .card__body
+ &__body {
+  padding: var(--gap-40) var(--gap-32);
+  background-color: var(--color-dark);
+ }
+
+ // .card__title
+ &__title {
+  @include margin-block;
+
+  margin-bottom: rem(13);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-white);
+ }
+
+ // .card__text
+ &__text {
+  @include margin-block;
+ }
+}

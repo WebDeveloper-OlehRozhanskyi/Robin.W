@@ -1,0 +1,65 @@
+@use 'functions' as *;
+@use 'variables' as *;
+
+:root {
+ // Кольори
+ --color-black: #000;
+ --color-white: #fff;
+ --color-white-50: rgb(255 255 255 / 50%);
+ --color-dark: #181823;
+ --color-beige: #fff3e4;
+ --color-gray: #8491a0;
+ --color-gray-dark: #5b6876;
+ --color-accent: #5221e6;
+ --color-google: #3cc74e;
+ --color-facebook: #609bff;
+ --color-dribbble: #e95d90;
+ --color-scrollbar: #9c9c9c;
+
+ // Типографіка
+ // Назви в лапках: у змінній Stylelint сприймає їх як ключові слова і
+ // вимагає нижній регістр
+ --font-family: 'Sen', 'Arial', 'Helvetica Neue', 'Helvetica', sans-serif;
+ --text-sm: #{rem(16)};
+ --text-base: #{rem(18)};
+ --text-lg: #{rem(24)};
+ --text-title: #{rem(55)};
+ --text-hero: #{rem(78)};
+ --text-counter: #{rem(117)};
+
+ // Відступи: назва = значення в px з макета
+ --gap-4: #{rem(4)};
+ --gap-8: #{rem(8)};
+ --gap-12: #{rem(12)};
+ --gap-16: #{rem(16)};
+ --gap-24: #{rem(24)};
+ --gap-32: #{rem(32)};
+ --gap-40: #{rem(40)};
+ --gap-48: #{rem(48)};
+ --gap-64: #{rem(64)};
+ --gap-72: #{rem(72)};
+ --gap-80: #{rem(80)};
+ --gap-120: #{rem(120)};
+
+ // Розмітка: змінюються на брейкпоінтах нижче
+ --padding-inline: var(--gap-40);
+ --section-padding: var(--gap-120);
+ --header-height: #{rem(90)};
+
+ // Анімації
+ --transition: 0.3s linear;
+ --transition-slow: 0.4s linear;
+
+ @media (width <= rem($l)) {
+  --section-padding: var(--gap-80);
+  --text-hero: #{rem(56)};
+ }
+
+ @media (width <= rem($bm)) {
+  --padding-inline: #{rem(20)};
+  --section-padding: var(--gap-48);
+  --header-height: #{rem(70)};
+  --text-title: #{rem(32)};
+  --text-hero: #{rem(32)};
+ }
+}

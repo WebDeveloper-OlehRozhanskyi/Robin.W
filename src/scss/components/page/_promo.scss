@@ -1,0 +1,63 @@
+@use '../foundation' as *;
+
+// Бежева секція «текст + фото»: Philosophy & values і Instagram
+.promo {
+ background-color: var(--color-beige);
+
+ // .promo__container
+ &__container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  max-width: rem(1440);
+  margin-inline: auto;
+
+  @include bm {
+   grid-template-columns: 1fr;
+  }
+ }
+
+ // .promo__content
+ &__content {
+  align-self: center;
+  padding: var(--section-padding) rem(70);
+
+  @include l {
+   padding-inline: var(--padding-inline);
+  }
+ }
+
+ // .promo__title
+ &__title {
+  margin-bottom: var(--gap-24);
+ }
+
+ // .promo__text
+ &__text {
+  @include margin-block;
+
+  margin-bottom: rem(134);
+  color: var(--color-gray-dark);
+
+  @include l {
+   margin-bottom: rem(67);
+  }
+
+  @include bm {
+   margin-bottom: rem(90);
+  }
+ }
+
+ // .promo__link
+ &__link {
+  color: var(--color-dark);
+ }
+
+ // .promo__img
+ &__img {
+  @include image;
+
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+ }
+}

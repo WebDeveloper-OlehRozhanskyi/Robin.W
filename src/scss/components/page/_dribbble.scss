@@ -1,0 +1,41 @@
+@use '../foundation' as *;
+
+.dribbble {
+ // Контент вужчий, ніж у решти секцій: до 1160px. Стара версія давала
+ // це відступами 110px і на 1380px стрибала одразу на 1300px
+ // .dribbble__container
+ &__container {
+  max-width: calc(#{rem(1160)} + var(--padding-inline) * 2);
+ }
+
+ // .dribbble__title
+ &__title {
+  margin-bottom: var(--gap-24);
+  color: var(--color-white);
+ }
+
+ // .dribbble__text
+ &__text {
+  @include margin-block;
+
+  margin-bottom: var(--gap-40);
+ }
+
+ // .dribbble__link
+ &__link {
+  margin-bottom: var(--gap-120);
+  color: var(--color-white);
+
+  @include bm {
+   margin-bottom: rem(60);
+  }
+ }
+
+ // Верхні кути заокруглені в самому PNG, тож border-radius не потрібен
+ // .dribbble__img
+ &__img {
+  @include image;
+
+  width: 100%;
+ }
+}

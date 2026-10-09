@@ -1,0 +1,95 @@
+@use '../foundation' as *;
+
+.contact {
+ // Вужчий за інші секції: 1076px разом з боковими відступами
+ // .contact__container
+ &__container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gap-24);
+  max-width: rem(1076);
+
+  @include bm {
+   grid-template-columns: 1fr;
+  }
+ }
+
+ // .contact__title
+ &__title {
+  margin-bottom: var(--gap-24);
+  color: var(--color-white);
+ }
+
+ // .contact__text
+ &__text {
+  @include margin-block;
+ }
+}
+
+.form {
+ display: flex;
+ flex-direction: column;
+ gap: var(--gap-40);
+
+ // Підпис + поле
+ // .form__field
+ &__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-8);
+ }
+
+ // .form__label
+ &__label {
+  font-size: var(--text-sm);
+  color: var(--color-white);
+ }
+
+ // Спільне для input і textarea
+ // .form__input
+ &__input {
+  @include form;
+
+  min-height: rem(50);
+  padding-inline: var(--gap-24);
+  color: var(--color-white);
+  background-color: var(--color-dark);
+  border: 0;
+
+  // Стара версія мала max-height разом з resize: none, тож обмеження
+  // ні на що не впливало. Тепер висоту можна тягнути до 500px
+  // .form__input--textarea
+  &--textarea {
+   min-height: rem(100);
+   max-height: rem(500);
+   padding-block: var(--gap-24);
+   resize: vertical;
+  }
+ }
+
+ // .form__btn
+ &__btn {
+  @include button;
+
+  min-height: rem(75);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-white);
+  background-color: var(--color-accent);
+  border: 0;
+  transition: transform var(--transition);
+
+  @include hover {
+   transform: scale(0.99);
+  }
+ }
+
+ // Відповідь після надсилання. Поки атрибут hidden стоїть, місця не займає
+ // .form__status
+ &__status {
+  @include margin-block;
+
+  font-size: var(--text-sm);
+  color: var(--color-white);
+ }
+}

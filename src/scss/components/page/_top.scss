@@ -1,0 +1,114 @@
+@use '../foundation' as *;
+
+.top {
+ position: relative;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ padding-top: var(--header-height);
+ padding-bottom: var(--gap-80);
+
+ // Темна панель праворуч: заходить під прозору шапку
+ &::after {
+  position: absolute;
+  inset: 0 0 0 38%;
+  z-index: 1;
+  background-color: var(--color-dark);
+  content: '';
+ }
+
+ @include l {
+  justify-content: flex-start;
+
+  &::after {
+   display: none;
+  }
+ }
+
+ @include bm {
+  flex-direction: column;
+  row-gap: var(--gap-48);
+  padding-top: 0;
+  padding-bottom: var(--gap-48);
+ }
+
+ // .top__media
+ &__media {
+  position: relative;
+  z-index: 2;
+  flex: 0 1 rem(750);
+  transform: translateX(rem(44));
+
+  @include l {
+   flex-basis: 45%;
+   transform: none;
+  }
+
+  @include bm {
+   flex-basis: auto;
+   overflow: hidden;
+   width: 100%;
+   aspect-ratio: 5 / 4;
+  }
+ }
+
+ // Висота фіксована, як у старій версії: на вужчих екранах фото не
+ // меншає пропорційно, а обрізається до вертикального кадру
+ // .top__img
+ &__img {
+  @include image;
+
+  height: rem(650);
+  object-fit: cover;
+
+  @include bm {
+   width: 100%;
+   height: 100%;
+  }
+ }
+
+ // .top__content
+ &__content {
+  position: relative;
+  z-index: 3;
+  flex: 0 0 rem(738);
+  color: var(--color-white);
+  transform: translateX(rem(-44));
+
+  @include l {
+   flex: 0 1 55%;
+   transform: translateX(rem(-66));
+  }
+
+  @include bm {
+   flex: 0 1 auto;
+   padding-inline: var(--padding-inline);
+   transform: none;
+  }
+ }
+
+ // .top__title
+ &__title {
+  @include margin-block;
+
+  margin-bottom: var(--gap-32);
+  font-size: var(--text-hero);
+  font-weight: 700;
+  line-height: normal;
+
+  @include bm {
+   margin-bottom: var(--gap-16);
+  }
+ }
+
+ // .top__title-accent
+ &__title-accent {
+  display: block;
+  color: var(--color-white-50);
+ }
+
+ // .top__text
+ &__text {
+  @include margin-block;
+ }
+}

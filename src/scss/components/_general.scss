@@ -1,0 +1,54 @@
+@use 'foundation' as *;
+
+.container {
+ @include container;
+}
+
+// Стандартні вертикальні відступи секції: 120 → 80 → 48
+.section {
+ padding-block: var(--section-padding);
+}
+
+// Маленький заголовок над великим: «WORK EXPERIENCE», «MY PROJECTS»
+.title {
+ @include margin-block;
+
+ margin-bottom: var(--gap-8);
+ font-size: var(--text-sm);
+ font-weight: 700;
+ text-transform: uppercase;
+}
+
+// Великий заголовок секції: 55 → 32
+.subtitle {
+ @include margin-block;
+
+ font-size: var(--text-title);
+ font-weight: 700;
+ line-height: normal;
+}
+
+// Посилання з лінією знизу; колір задає блок, у якому воно стоїть
+.btn {
+ position: relative;
+ display: inline-block;
+ padding-bottom: var(--gap-4);
+ text-decoration: none;
+
+ &::before {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-gray);
+  transition: transform var(--transition-slow);
+  content: '';
+ }
+
+ @include hover {
+  &::before {
+   transform: scaleX(0.9) scaleY(2);
+  }
+ }
+}

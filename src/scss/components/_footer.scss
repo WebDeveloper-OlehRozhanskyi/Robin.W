@@ -1,0 +1,122 @@
+@use 'foundation' as *;
+
+.footer {
+ padding-block: var(--gap-80);
+ background-color: var(--color-dark);
+
+ @include bm {
+  padding-block: var(--gap-48);
+ }
+
+ // .footer__container
+ &__container {
+  display: flex;
+  flex-direction: column;
+  gap: rem(46);
+
+  @include bm {
+   gap: var(--gap-48);
+  }
+ }
+
+ // .footer__body
+ &__body {
+  display: flex;
+  justify-content: space-between;
+
+  @include bm {
+   flex-direction: column;
+   gap: var(--gap-48);
+  }
+ }
+
+ // .footer__brand
+ &__brand {
+  flex: 0 0 rem(130);
+
+  @include bm {
+   flex-basis: auto;
+  }
+ }
+
+ // .footer__logo
+ &__logo {
+  display: block;
+  width: fit-content;
+  margin-bottom: var(--gap-32);
+ }
+
+ // .footer__logo-img
+ &__logo-img {
+  @include image;
+ }
+
+ // .footer__social
+ &__social {
+  @include list;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-16);
+ }
+
+ // .footer__social-link
+ &__social-link {
+  @include link;
+
+  transition: transform var(--transition);
+
+  @include hover {
+   transform: scale(0.9);
+  }
+ }
+
+ // .footer__social-icon
+ &__social-icon {
+  @include image;
+ }
+
+ // .footer__nav
+ &__nav {
+  display: flex;
+  flex: 0 1 rem(392);
+
+  @include bm {
+   flex-direction: column;
+   flex-basis: auto;
+  }
+ }
+
+ // .footer__list
+ &__list {
+  @include list;
+
+  flex: 0 0 rem(196);
+
+  @include bm {
+   flex-basis: auto;
+  }
+ }
+
+ // .footer__link
+ &__link {
+  @include link;
+
+  display: inline-flex;
+  align-items: center;
+  min-height: rem(48);
+  font-size: var(--text-sm);
+  color: var(--color-white);
+
+  @include hover {
+   text-decoration: underline;
+  }
+ }
+
+ // .footer__copy
+ &__copy {
+  @include margin-block;
+
+  font-size: var(--text-sm);
+ }
+}

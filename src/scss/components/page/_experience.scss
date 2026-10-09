@@ -1,0 +1,78 @@
+@use '../foundation' as *;
+
+.experience {
+ // .experience__subtitle
+ &__subtitle {
+  max-width: rem(695);
+  margin-bottom: var(--gap-40);
+  color: var(--color-white);
+ }
+
+ // .experience__list
+ &__list {
+  @include list;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: var(--gap-72);
+  counter-reset: experience;
+
+  @include l {
+   column-gap: var(--gap-40);
+  }
+
+  @include bm {
+   grid-template-columns: 1fr;
+   row-gap: var(--gap-48);
+  }
+ }
+
+ // .experience__item
+ &__item {
+  counter-increment: experience;
+
+  // Номер 01, 02, 03 — decimal-leading-zero, а не «0» + лічильник,
+  // який для десятого пункту дав би «010»
+  &::before {
+   display: inline-block;
+   font-size: var(--text-counter);
+   content: counter(experience, decimal-leading-zero);
+  }
+ }
+
+ // .experience__item-title
+ &__item-title {
+  @include margin-block;
+
+  margin-bottom: rem(22);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-white);
+
+  @include bm {
+   margin-bottom: var(--gap-16);
+  }
+ }
+
+ // .experience__company
+ &__company {
+  &--google {
+   color: var(--color-google);
+  }
+
+  &--facebook {
+   color: var(--color-facebook);
+  }
+
+  &--dribbble {
+   color: var(--color-dribbble);
+  }
+ }
+
+ // .experience__item-text
+ &__item-text {
+  @include margin-block;
+
+  font-size: var(--text-sm);
+ }
+}

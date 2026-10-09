@@ -1,0 +1,88 @@
+@use '../foundation' as *;
+
+.response {
+ // .response__container
+ &__container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: var(--gap-24);
+
+  @include laptop {
+   column-gap: rem(10);
+  }
+
+  @include bm {
+   grid-template-columns: 1fr;
+   row-gap: var(--gap-64);
+  }
+ }
+
+ // .response__title
+ &__title {
+  margin-bottom: var(--gap-24);
+  color: var(--color-white);
+ }
+
+ // .response__text
+ &__text {
+  @include margin-block;
+
+  margin-bottom: var(--gap-40);
+ }
+
+ // .response__link
+ &__link {
+  color: var(--color-white);
+ }
+
+ // .response__list
+ &__list {
+  @include list;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-48);
+ }
+
+ // .response__img
+ &__img {
+  @include image;
+
+  width: 100%;
+ }
+
+ // figure з цитатою і підписом. Верхньої лінії рамки немає: зверху фото.
+ // margin: 0 скидає типові відступи figure
+ // .response__body
+ &__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-64);
+  margin: 0;
+  padding: var(--gap-64);
+  border: 1px solid var(--color-gray-dark);
+  border-top: 0;
+
+  @include laptop {
+   padding: var(--gap-32);
+  }
+ }
+
+ // .response__quote
+ &__quote {
+  margin: 0;
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-white);
+ }
+
+ // Ім'я і посада
+ // .response__author
+ &__author {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-4);
+  font-weight: 700;
+  color: var(--color-gray-dark);
+ }
+}
